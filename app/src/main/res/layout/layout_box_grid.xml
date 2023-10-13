@@ -8,32 +8,32 @@
     android:layout_gravity="center_horizontal">
 
     <include
-        android:id="@+id/line1"
-        layout="@layout/item_line"
+        android:id="@+id/row1"
+        layout="@layout/item_box_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="2dp" />
 
     <include
-        android:id="@+id/line2"
-        layout="@layout/item_line"
+        android:id="@+id/row2"
+        layout="@layout/item_box_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="2dp" />
 
     <include
-        android:id="@+id/line3"
-        layout="@layout/item_line"
+        android:id="@+id/row3"
+        layout="@layout/item_box_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="2dp" />
 
     <include
-        android:id="@+id/line4"
-        layout="@layout/item_line"
+        android:id="@+id/row4"
+        layout="@layout/item_box_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"

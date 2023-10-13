@@ -15,67 +15,67 @@ import dev.alraj.reverslepuzzlesolver.ReverslePuzzle.Box.GREY
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var vb: ActivityMainBinding
-    private val lines = Array(4) { Array(5) { GREY } }
-    private val boxInfi = infiOf(GREY, YELLOW, GREEN)
+    private lateinit var binding: ActivityMainBinding
+    private val boxGrid = Array(4) { Array(5) { GREY } }
+    private val colors = infiOf(GREY, YELLOW, GREEN)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vb = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(vb.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         Timber.plant(Timber.DebugTree())
         setupClicker()
-        vb.find.setOnClickListener { find() }
+        binding.find.setOnClickListener { find() }
 
         repeat(10) {
-            Timber.d("%d %s", it, boxInfi.next().name)
+            Timber.d("%d %s", it, colors.next().name)
         }
     }
 
     private fun find() {
-        vb.lines.root.children.forEach { line ->
+        binding.boxGrid.root.children.forEach { line ->
             (line as LinearLayout).forEach { box ->
                 (box as TextView).text = ""
             }
         }
 
-        if (vb.mainAnswer.text.isBlank()) {
+        if (binding.mainAnswer.text.isBlank()) {
             Toast.makeText(this, "What to find?", Toast.LENGTH_SHORT).show()
             return
         }
-        if(vb.mainAnswer.text.toString().length != 5) {
+        if(binding.mainAnswer.text.toString().length != 5) {
             Toast.makeText(this, "Answer should be 5 characters only", Toast.LENGTH_SHORT).show()
             return
         }
-        val answer = vb.mainAnswer.text.toString()
+        val answer = binding.mainAnswer.text.toString()
 
         val notFound = StringBuilder()
-        lines.forEachIndexed { index, line ->
-            val foundList = ReverslePuzzle.findAnswers(answer, line.toList(), words)
+        boxGrid.forEachIndexed { index, boxRow ->
+            val foundList = ReverslePuzzle.findAnswers(answer, boxRow.toList(), words)
             if(foundList.isEmpty()) {
                 notFound.append("No answers found for line ${index+1}\n")
                 return@forEachIndexed
             }
 
-            val lineLL = vb.lines.root.getChildAt(index) as LinearLayout
+            val lineLL = binding.boxGrid.root.getChildAt(index) as LinearLayout
             foundList[0].forEachIndexed { characterIndex, character ->
                 (lineLL.getChildAt(characterIndex) as TextView).text = character.toString()
             }
         }
-        vb.foundAnswers.text = notFound.toString()
+        binding.foundAnswers.text = notFound.toString()
     }
 
     private fun setupClicker() {
-        listOf(vb.lines.line1, vb.lines.line2, vb.lines.line3, vb.lines.line4)
-            .forEachIndexed { lineIndex, line ->
-                line.root.children
+        listOf(binding.boxGrid.row1, binding.boxGrid.row2, binding.boxGrid.row3, binding.boxGrid.row4)
+            .forEachIndexed { lineIndex, row ->
+                row.root.children
                     .forEachIndexed { boxIndex, box ->
                         box.setOnClickListener {
-                            val currentBox = lines[lineIndex][boxIndex]
-                            val newBox = boxInfi.with(currentBox).next()
+                            val currentBox = boxGrid[lineIndex][boxIndex]
+                            val newBox = colors.with(currentBox).next()
                             box.setBackgroundResource(newBox.color)
-                            lines[lineIndex][boxIndex] = newBox
+                            boxGrid[lineIndex][boxIndex] = newBox
                         }
                     }
             }
