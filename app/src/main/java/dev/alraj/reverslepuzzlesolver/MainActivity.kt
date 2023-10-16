@@ -9,9 +9,9 @@ import androidx.core.view.children
 import androidx.core.view.forEach
 import dev.alraj.infi.infiOf
 import dev.alraj.reverslepuzzlesolver.databinding.ActivityMainBinding
-import dev.alraj.reverslepuzzlesolver.ReverslePuzzle.Box.YELLOW
-import dev.alraj.reverslepuzzlesolver.ReverslePuzzle.Box.GREEN
-import dev.alraj.reverslepuzzlesolver.ReverslePuzzle.Box.GREY
+import dev.alraj.reverslepuzzlesolver.shared.Box.*
+import dev.alraj.reverslepuzzlesolver.shared.ReversleSolver
+import dev.alraj.reverslepuzzlesolver.shared.WORDS
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "What to find?", Toast.LENGTH_SHORT).show()
             return
         }
-        if(binding.mainAnswer.text.toString().length != 5) {
+        if (binding.mainAnswer.text.toString().length != 5) {
             Toast.makeText(this, "Answer should be 5 characters only", Toast.LENGTH_SHORT).show()
             return
         }
@@ -52,9 +52,13 @@ class MainActivity : AppCompatActivity() {
 
         val notFound = StringBuilder()
         boxGrid.forEachIndexed { index, boxRow ->
-            val foundString = ReverslePuzzle.findAnswers(answer, boxRow.toList(), words)
-            if(foundString == null) {
-                notFound.append("No answers found for line ${index+1}\n")
+            val foundString = ReversleSolver.findAnswers(
+                answer,
+                boxRow.toList(),
+                WORDS
+            )
+            if (foundString == null) {
+                notFound.append("No answers found for line ${index + 1}\n")
                 return@forEachIndexed
             }
 
@@ -67,7 +71,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupClicker() {
-        listOf(binding.boxGrid.row1, binding.boxGrid.row2, binding.boxGrid.row3, binding.boxGrid.row4)
+        listOf(
+            binding.boxGrid.row1,
+            binding.boxGrid.row2,
+            binding.boxGrid.row3,
+            binding.boxGrid.row4
+        )
             .forEachIndexed { lineIndex, row ->
                 row.root.children
                     .forEachIndexed { boxIndex, box ->

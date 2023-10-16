@@ -1,6 +1,6 @@
-package dev.alraj.reverslepuzzlesolver
+package dev.alraj.reverslepuzzlesolver.shared
 
-val words = listOf(
+val WORDS = listOf(
     "WHICH",
     "THERE",
     "THEIR",
