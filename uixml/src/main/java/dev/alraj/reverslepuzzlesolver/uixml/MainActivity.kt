@@ -12,7 +12,6 @@ import dev.alraj.reverslepuzzlesolver.uixml.databinding.ActivityMainBinding
 import dev.alraj.reverslepuzzlesolver.shared.Box.*
 import dev.alraj.reverslepuzzlesolver.shared.ReversleSolver
 import dev.alraj.reverslepuzzlesolver.shared.WORDS
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,13 +23,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Timber.plant(Timber.DebugTree())
         setupClicker()
         binding.find.setOnClickListener { find() }
-
-        repeat(10) {
-            Timber.d("%d %s", it, colors.next().name)
-        }
     }
 
     private fun find() {
