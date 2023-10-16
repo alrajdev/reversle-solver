@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Reversle Puzzle Solver"
-include ':app'
+include ':uixml'
 include ':shared'

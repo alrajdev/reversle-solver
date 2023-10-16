@@ -1,4 +1,4 @@
-package dev.alraj.reverslepuzzlesolver
+package dev.alraj.reverslepuzzlesolver.uixml
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.core.view.children
 import androidx.core.view.forEach
 import dev.alraj.infi.infiOf
-import dev.alraj.reverslepuzzlesolver.databinding.ActivityMainBinding
+import dev.alraj.reverslepuzzlesolver.uixml.databinding.ActivityMainBinding
 import dev.alraj.reverslepuzzlesolver.shared.Box.*
 import dev.alraj.reverslepuzzlesolver.shared.ReversleSolver
 import dev.alraj.reverslepuzzlesolver.shared.WORDS

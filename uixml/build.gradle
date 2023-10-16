@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace "dev.alraj.reverslepuzzlesolver"
+    namespace "dev.alraj.reverslepuzzlesolver.uixml"
     compileSdk 33
 
     defaultConfig {
-        applicationId "dev.alraj.reverslepuzzlesolver"
+        applicationId "dev.alraj.reverslepuzzlesolver.uixml"
         minSdk 26
         targetSdk 33
         versionCode 1
