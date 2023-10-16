@@ -52,14 +52,14 @@ class MainActivity : AppCompatActivity() {
 
         val notFound = StringBuilder()
         boxGrid.forEachIndexed { index, boxRow ->
-            val foundList = ReverslePuzzle.findAnswers(answer, boxRow.toList(), words)
-            if(foundList.isEmpty()) {
+            val foundString = ReverslePuzzle.findAnswers(answer, boxRow.toList(), words)
+            if(foundString == null) {
                 notFound.append("No answers found for line ${index+1}\n")
                 return@forEachIndexed
             }
 
             val lineLL = binding.boxGrid.root.getChildAt(index) as LinearLayout
-            foundList[0].forEachIndexed { characterIndex, character ->
+            foundString.forEachIndexed { characterIndex, character ->
                 (lineLL.getChildAt(characterIndex) as TextView).text = character.toString()
             }
         }
